@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Logging.Controller
 {
-    internal class LogginController
+    internal class NLogginController
     {
         //一般默认 ILogger<当前类>
-        private readonly ILogger<LogginController> logger;
+        private readonly ILogger<NLogginController> logger;
 
         //使用构造函数方式注入 ILogger对象
-        public LogginController(ILogger<LogginController> _logger)
+        public NLogginController(ILogger<NLogginController> _logger)
         {
             this.logger = _logger;
         }
