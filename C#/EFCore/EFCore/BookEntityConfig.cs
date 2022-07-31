@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace EFCore
 {
-    public class BookEntityConfig : IEntityTypeConfiguration<Books>
+    public class BookEntityConfig : IEntityTypeConfiguration<Book>
     {
-        public void Configure(EntityTypeBuilder<Books> builder)
+        public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.ToTable("T_Books");
         }

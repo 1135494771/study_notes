@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EFCore
 {
-    public class Books
+    public class Book
     {
         //主键
         public long Id { get; set; }
