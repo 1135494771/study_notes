@@ -35,7 +35,7 @@
     4.EF不再增加新的特性。
     ```
 
-  - #### EFCore 与EF 比较
+  - #### Migration
 
     - Migration 数据库迁移
 
@@ -46,7 +46,7 @@
 
       ``` Migration 使用
       1.NuGet安装 Install-Package Microsoft.EntityFrameworkCore.Tools；
-      2.使用：Add-Migration init (Add-Migration 【本次迁移的备注】)  --自动在项目的Migrations文件夹中生成操作数据库的C#代码。
+      2.使用: Add-Migration init (Add-Migration 【本次迁移的备注】)  --自动在项目的Migrations文件夹中生成操作数据库的C#代码。
               Update-database  --需要执行后才会应用对数据库的操作。
-                
+      3.
       ```

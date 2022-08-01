@@ -1,0 +1,1 @@
+反向工程：Scaffold-DbContext "Server=1.116.169.186,1401;Database=cqx;Trusted_Connection=True;User Id=sa;Password=Str0ngPassword!;Trusted_Connection=false" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models

@@ -15,9 +15,18 @@ namespace EFCore
         public string Title { get; set; }
 
         //发布日期
-        public DateTime PubTime { get; set; }
+        public DateTime? PubTime { get; set; }
 
         //单价
-        public double Price { get; set; }
+        public decimal Price { get; set; }
+
+        //作者
+        public string Author { get; set; }
+
+        //描述
+        public string Introduction { get; set; }
+
+        //备注
+        public string remark { get; set; }
     }
 }
