@@ -25,8 +25,5 @@ namespace EFCore
 
         //描述
         public string Introduction { get; set; }
-
-        //备注
-        public string remark { get; set; }
     }
 }

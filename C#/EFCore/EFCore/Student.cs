@@ -12,5 +12,6 @@ namespace EFCore
         public string Name { get; set; }
         public int Age { get; set; }
         public int Sex { get; set; }
+        public string home { get; set; }
     }
 }

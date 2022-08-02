@@ -13,6 +13,8 @@ namespace EFCore
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.ToTable("T_Students");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.home).HasMaxLength(100);
         }
     }
 }

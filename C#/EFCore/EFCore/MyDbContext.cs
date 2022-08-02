@@ -11,7 +11,7 @@ namespace EFCore
     internal class MyDbContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
-        public DbSet<Student> Students { get; set; }
+        //public DbSet<Student> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

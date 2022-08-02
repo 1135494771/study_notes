@@ -47,6 +47,49 @@
       ``` Migration 使用
       1.NuGet安装 Install-Package Microsoft.EntityFrameworkCore.Tools；
       2.使用: Add-Migration init (Add-Migration 【本次迁移的备注】)  --自动在项目的Migrations文件夹中生成操作数据库的C#代码。
-              Update-database  --需要执行后才会应用对数据库的操作。
-      3.
+              Update-database   --应用所有的迁移
+              Update-database 【本次迁移的备注】  --指定版本进行迁移。
+              Script-Migration  --生成最后一次迁移文件要执行的sql脚本
+              Script-Migration D F  --生成版本D到版本F的SQL脚本
+              Script-Migration D  --生成版本D到最新版本的SQL脚本
       ```
+
+      | 迁移命令描述 | PMC命令(vs) |
+      | ---- | ---- |
+      | 创建迁移：migrationname为迁移名称 | add-migration migrationName |
+      | 移除迁移(删除最近的一次迁移) | remove-migration |
+      | 应用所有的迁移(使迁移文件应用到数据库) | update-database |
+      | 指定版本进行迁移：migrationname为迁移名称 | update-database migrationName |
+      | 生成对应版本的脚本 | Script-Migration |
+
+  - #### 创建EF Core 项目
+
+    - 步骤：1、创建实体类；2、建DBContext；3、生成数据库；4、编写调用EF Core业务代码
+
+      - ``` 项目搭建
+        /*创建实体类*/ 
+        public class Book
+        {
+            //主键
+            public long Id { get; set; }
+
+            //标题
+            public string Title { get; set; }
+
+            //发布日期
+            public DateTime? PubTime { get; set; }
+
+            //单价
+            public decimal Price { get; set; }
+
+            //作者
+            public string Author { get; set; }
+
+            //描述
+            public string Introduction { get; set; }
+        }
+        ```
+
+    - NuGet安装 Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+    - 
