@@ -67,7 +67,7 @@
     - 步骤：1、创建实体类；2、建DBContext；3、生成数据库；4、编写调用EF Core业务代码
 
       - ``` 项目搭建
-        /*创建实体类*/ 
+        /* 创建实体类 */ 
         public class Book
         {
             //主键
@@ -91,18 +91,22 @@
         ```
 
       - ``` 创建DBContext
-        /*创建DBContext*/ 
-        internal class MyDbContext : DbContext
+        /* DbContext配置类，继承自 DbContext类 */
+        public class MyDbContext : DbContext
         {
-            
+            //存放 DbSet实体
             public DbSet<Book> Books { get; set; }
 
+
+            //配置连接字符串或者添加配置
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
                 base.OnConfiguring(optionsBuilder);
                 optionsBuilder.UseSqlServer("Data Source=1.116.169.186,1401;Initial Catalog=cqx;Persist Security Info=True;User ID=sa;Password=Str0ngPassword!;");
             }
 
+
+            //从当前程序集加载所有的 IEntityTypeConfiguration
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                 //modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -112,6 +116,33 @@
             }
         }
         ```
+
+      - ``` 创建DBContext
+        /* 实体配置类 */
+        public class BookEntityConfig : IEntityTypeConfiguration<Book>
+        {
+            /* Book实体类 */
+            public void Configure(EntityTypeBuilder<Book> builder)
+            {
+                //生成指定的数据库表名
+                builder.ToTable("T_Books");
+
+                #region 设置列属性
+                //设置主键
+                builder.HasKey(x => x.Id);
+                //设置 title字段属性 最大长度50，可为空
+                builder.Property(x => x.Title).HasMaxLength(50).IsRequired(false);
+                //设置 author字段属性 最大长度50，非空
+                builder.Property(x => x.Author).HasMaxLength(50).IsRequired();
+                //设置 price字段属性 默认值0
+                builder.Property(x => x.Price).HasDefaultValue(0).HasColumnType("decimal(18,2)");
+                //设置 Introduction字段属性
+                builder.Property(x => x.Introduction).HasMaxLength(100);
+                #endregion
+
+            }
+        }
+        ```     
 
     - NuGet安装 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
