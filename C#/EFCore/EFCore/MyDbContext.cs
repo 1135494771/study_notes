@@ -10,8 +10,8 @@ namespace EFCore
 {
     internal class MyDbContext : DbContext
     {
+        //存放 DbSet实体
         public DbSet<Book> Books { get; set; }
-        //public DbSet<Student> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
