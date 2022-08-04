@@ -13,5 +13,8 @@ namespace EFCoreConsoleApp.Moduls.Students
         public int Age { get; set; }
         public int Sex { get; set; }
         public string Address { get; set; }
+        public string Birthday { get; set; }
+        public object other { get; set; }
+
     }
 }

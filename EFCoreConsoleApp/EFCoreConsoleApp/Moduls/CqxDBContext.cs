@@ -35,7 +35,12 @@ namespace EFCoreConsoleApp.Moduls
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Server=1.116.169.186,1401;Database=cqx;Trusted_Connection=True;User Id=sa;Password=Str0ngPassword!;Trusted_Connection=false");
             optionsBuilder.UseBatchEF_MSSQL();
-            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+            //optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+            //optionsBuilder.LogTo(msg =>
+            //{
+            //    Console.WriteLine(msg);
+            //});
+
         }
 
         //从当前程序集加载所有的 IEntityTypeConfiguration

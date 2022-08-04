@@ -146,4 +146,38 @@
 
     - NuGet安装 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
-    - 
+
+  - #### Fluent API
+
+    - 约定配置
+
+      ``` FluentAPI 的主要规则
+      1.数据表列的名字采用实体类属性的名字，列的数据类型采用和实体类属性类型最兼容的类型；
+      2.数据表列的可空性取决于对应实体类属性的可空性；
+      3.名字为Id的属性默认设置为主键，如果主键为short，int 或者long 类型，则默认采用自增字段，如果主键为Guid类型，则采用默认的Guid生成机制生成主键值。
+      
+      举例：设置数据库表名
+      builder.ToTable("T_Books");
+      把配置写到单独的配置类中。
+
+      缺点：复杂； 优点：解耦
+      ```
+
+      ``` FluentAPI 的一些配置
+      //配置列名
+      builder.HasKey(x => x.Id);
+      ```
+
+  - #### Data Annotation
+
+    - 把配置以特性的形式标注在实体类中
+
+      ``` Data Annotation
+      举例：设置数据库表名
+      [Table("T_Books")]
+      public class Book {
+         public int id { get; set; }
+      }
+     
+      缺点：耦合度高； 优点：简单
+      ```
