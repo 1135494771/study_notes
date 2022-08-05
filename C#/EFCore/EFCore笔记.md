@@ -142,10 +142,9 @@
 
             }
         }
-        ```     
+        ```
 
     - NuGet安装 Install-Package Microsoft.EntityFrameworkCore.SqlServer
-
 
   - #### Fluent API
 
