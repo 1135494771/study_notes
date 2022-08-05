@@ -17,7 +17,7 @@ namespace EFCoreConsoleApp.Moduls.Students
             builder.ToTable("T_Students");
             //设置为主键
             builder.HasKey(x => x.Id);
-            //设置字符串最大长度
+            //设置字符串最大长度 --> string类型如果不设置长度默认为 nvarchar(MAX)
             builder.Property(x => x.Name).HasMaxLength(50);
             builder.Property(x => x.Address).HasMaxLength(100);
             //设置 允许 Null 值 (默认true, 不允许为 Null)
