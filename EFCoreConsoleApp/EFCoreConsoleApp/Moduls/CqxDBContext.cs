@@ -1,4 +1,7 @@
-﻿using EFCoreConsoleApp.Moduls.Books;
+﻿
+using EFCoreConsoleApp.Moduls.Articles;
+using EFCoreConsoleApp.Moduls.Books;
+using EFCoreConsoleApp.Moduls.Comments;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -28,6 +31,8 @@ namespace EFCoreConsoleApp.Moduls
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(b => b.AddConsole());
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         //配置连接字符串或者添加配置
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

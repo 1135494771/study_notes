@@ -1,5 +1,7 @@
 ﻿using EFCoreConsoleApp.Moduls;
+using EFCoreConsoleApp.Moduls.Articles;
 using EFCoreConsoleApp.Moduls.Books;
+using EFCoreConsoleApp.Moduls.Comments;
 using EFCoreConsoleApp.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,6 +15,10 @@ namespace EFCoreConsoleApp
     {
         static async Task Main(string[] args)
         {
+            //一对多数据添加
+            await HasOneAdd();
+
+
             ////查询语句
             //var data = QueryData();
             //foreach (var item in data)
@@ -29,6 +35,31 @@ namespace EFCoreConsoleApp
             ////异步批量删除
             //await BatchDelete();
 
+        }
+
+
+        static async Task HasOneAdd()
+        {
+            Article article = new Article();
+            article.Title = "小人书";
+            article.Content = "我不爱吃土豆";
+
+            Comment comment1 = new Comment();
+            comment1.Message = "这人写的真垃圾";
+
+            Comment comment2 = new Comment();
+            comment2.Message = "写的太棒了";
+
+            Comment comment3 = new Comment();
+            comment3.Message = "五星好评";
+            using (CqxDBContext Db = new CqxDBContext())
+            {
+                Db.Comments.Add(comment1);
+                Db.Comments.Add(comment2);
+                Db.Comments.Add(comment3);
+                Db.Articles.Add(article);
+                await Db.SaveChangesAsync();
+            }
         }
 
         static async Task BulkInsert()

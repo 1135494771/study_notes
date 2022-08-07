@@ -163,8 +163,28 @@
       ```
 
       ``` FluentAPI 的一些配置
-      //配置列名
-      builder.HasKey(x => x.Id);
+      /* FluentAPI 的一些配置 */
+      public void Configure(EntityTypeBuilder<Student> builder)
+      {
+          //设置数据库表名
+          builder.ToTable("T_Students");
+          //设置为主键
+          builder.HasKey(x => x.Id);
+          //设置字符串最大长度 --> string类型如果不设置长度默认为 nvarchar(MAX)
+          builder.Property(x => x.Name).HasMaxLength(50);
+          builder.Property(x => x.Address).HasMaxLength(100);
+          //设置 允许 Null 值 (默认true, 不允许为 Null)
+          builder.Property(x => x.Age).IsRequired();
+          builder.Property(x => x.Sex).IsRequired();
+          //排除属性映射 
+          builder.Ignore(x => x.Birthday);
+          //手动设置列名
+          builder.Property(x => x.other).HasColumnName("others");
+          //手动设置列名类型
+          builder.Property(x => x.other).HasColumnType("nvarchar(100)");
+          //手动设置列名默认值
+          builder.Property(x => x.other).HasDefaultValue("hello");
+      }
       ```
 
   - #### Data Annotation
@@ -180,3 +200,76 @@
      
       缺点：耦合度高； 优点：简单
       ```
+
+  - #### EF Core 主键
+
+    - 主键生成策略：自动增长、Guid、Hi/Lo算法等。
+    - 自动增长 --> 优点：简单；缺点：数据库迁移以及分布式系统中比较麻烦；并发性能差。
+    - Guid算法(或UUID算法)生成一个全局  唯一的Id。适合于分布式系统。优点：简单、高并发；缺点：磁盘占用空间大。
+    - Hi/Lo算法：EFCore 支持Hi/Lo算法来有优化自增列。主键值由俩部分组成：高位（Hi）和低位（Lo），高位由数据库生成，俩个高位之间间隔若干个值，由程序在本地生成低位，低位的值由本地自增生成。不同进程或集群中不同服务器获取的Hi值不会重复，而本地进程计算的Lo则可以保证在本地高效率的生成主键值。但是HiLo不是EFCore的标准。
+
+  - #### 通过代码方式查看EFCore生成的SQL语句
+
+    - 1.标准日志
+
+    - 2.简单日志
+
+    - 3.ToQueryString 日志
+
+      - EF Core的Where方法返回IQueryable类型，DbSet也实现了IQueryable接口。IQueryable有扩展方法ToQueryString()可以获取SQL。注意：不需要真的执行查询才获取SQL语句；只能获取查询操作。
+
+  - #### EF Core关系配置
+
+    - 一对多
+
+      ``` 一对多实体类
+      /// <summary>
+      /// 文章类
+      /// 一对多
+      /// 一个文章对应多个评论内容
+      /// </summary>
+      public class Article
+      {
+          public long Id { get; set; }
+          public string Title { get; set; }
+          public string Content { get; set; }
+
+          /// <summary>
+          /// 关联实体类
+          /// </summary>
+          public List<Comment> comments { get; set; } = new List<Comment>();
+      }
+
+      /// <summary>
+      /// 评论类
+      /// 一对多
+      /// 一个评论对应一个文章
+      /// </summary>
+      public class Comment
+      {
+          public long Id { get; set; }
+          public string Message { get; set; }
+
+          /// <summary>
+          /// 关联实体类
+          /// </summary>
+          public Article article { get; set; }
+      }
+
+      //在一的那端关联多的那端配置
+      public class CommentEntityConfig : IEntityTypeConfiguration<Comment>
+      {
+          public void Configure(EntityTypeBuilder<Comment> builder)
+          {
+              builder.ToTable("T_Comments");
+              builder.HasKey(x => x.Id);
+              //通过 HasOne 、 WithMany 绑定
+              builder.HasOne(x=>x.TheArticle).WithMany(x=>x.comments);
+          }
+      }
+      ```
+
+
+
+  
+  
