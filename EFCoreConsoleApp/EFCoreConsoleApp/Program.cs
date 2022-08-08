@@ -18,6 +18,10 @@ namespace EFCoreConsoleApp
             //一对多数据添加
             await HasOneAdd();
 
+            //一对多数据查询
+            await HasOneSelect();
+
+
 
             ////查询语句
             //var data = QueryData();
@@ -54,12 +58,18 @@ namespace EFCoreConsoleApp
             comment3.Message = "五星好评";
             using (CqxDBContext Db = new CqxDBContext())
             {
-                Db.Comments.Add(comment1);
-                Db.Comments.Add(comment2);
-                Db.Comments.Add(comment3);
+                article.comments.Add(comment1);
+                article.comments.Add(comment2);
+                article.comments.Add(comment3);
                 Db.Articles.Add(article);
                 await Db.SaveChangesAsync();
             }
+        }
+
+
+        static async Task HasOneSelect()
+        {
+            
         }
 
         static async Task BulkInsert()
