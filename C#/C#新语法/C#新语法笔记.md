@@ -14,6 +14,8 @@
 
   - #### 1、将global 修饰符添加到using前，这个命名空间就应用到整个项目，不用引用重复using
 
-   - #### 2、通常创建一个专门管理全局using代码的C#文件
+  - #### 2、通常创建一个专门管理全局using代码的C#文件
 
-   -
+  - #### 3、如果csproj中启用了 <ImplicitUsings>enable</ImplicitUsings>，编译器会自动隐士增加对于System、System.Linq常用命名空间的引入，不同各类型项目引入的命名空间也不一样
+
+- ### 全局using 指令（c# 10.0）
