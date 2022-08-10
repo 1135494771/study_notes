@@ -40,5 +40,63 @@
       ```
 
     - ``` 实例2
-
+      //手动创建代码块-作用域
+      {
+          using var stream = File.OpenWrite(@"E:\practice\C#\ConsoleApp2\测试.txt");
+          using var writer = new StreamWriter(stream);
+          writer.Write("你好，傻逼2");
+      }
+      var context = File.ReadAllText(@"E:\practice\C#\ConsoleApp2\测试.txt");
+      Console.WriteLine(context);
       ```
+      ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220810215926.png)
+
+- ### 文件范围的命名空间声明（c# 10.0）
+
+  - #### 区别：在以前版本中，类型或者方法必须定义在namespace中；在新版本中 取消了namespace下的大括号，可以把namespace 当作一个引用来使用，类型或者方法可以不用定义在namespace 中
+
+  - ``` 实例
+    //原来写法
+    namespace 新语法
+    {
+        internal class AAA
+        {
+            public void SSS()
+            {
+                //原来写法
+                using (var conn_1 = new SqlConnection(""))
+                {
+                    conn_1.Open();
+                }
+
+                //新的语法
+                using var conn_2 = new SqlConnection("");
+            }
+        }
+    }
+
+
+    //新的写法
+    //取消了namespace下的大括号
+    namespace 新语法;
+
+    internal class AAA
+    {
+        public void SSS()
+        {
+            //原来写法
+            using (var conn_1 = new SqlConnection(""))
+            {
+                conn_1.Open();
+            }
+
+            //新的语法
+            using var conn_2 = new SqlConnection("");
+        }
+    }
+    ```
+    ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220810220235.png)
+
+  - ### record 类型（c# 9.0）
+
+    - 

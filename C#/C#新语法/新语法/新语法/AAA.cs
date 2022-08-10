@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//取消了namespace下的大括号
 namespace 新语法;
 
 internal class AAA
@@ -21,4 +22,6 @@ internal class AAA
         using var conn_2 = new SqlConnection("");
     }
 }
+
+
 
