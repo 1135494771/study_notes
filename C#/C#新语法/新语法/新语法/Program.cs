@@ -1,4 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+AAAA();
 
-await File.ReadAllTextAsync("");
+void AAAA()
+{
+    Console.WriteLine("你好，傻逼");
+}
+
+
