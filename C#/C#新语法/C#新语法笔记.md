@@ -55,7 +55,7 @@
 
   - #### 区别：在以前版本中，类型或者方法必须定义在namespace中；在新版本中 取消了namespace下的大括号，可以把namespace 当作一个引用来使用，类型或者方法可以不用定义在namespace 中
 
-  - ``` 实例
+    ``` 实例
     //原来写法
     namespace 新语法
     {
@@ -95,8 +95,59 @@
         }
     }
     ```
+
     ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220810220235.png)
 
   - ### record 类型（c# 9.0）
 
-    - 
+    - #### 关于属性赋值一些扩展说明
+
+      ``` init 属性赋值一些扩展说明
+      1. init; 只能在构函数初始化赋值 
+
+        Records records = new Records(2);
+        records.Id = 1;
+        Console.WriteLine(records.Id.ToString() + " --- " + records.Name);
+
+        public class Records
+        {
+          public Records(int Id)
+          {
+              this.Id = Id;
+          }
+
+          public int Id { get; init; }
+          public string Name { get; set; } = "";
+        }
+      ```
+
+      ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220811095054.png)
+
+      ``` private set 属性赋值一些扩展说明
+      2. private set; 可以在构造函数赋值，也可以在类内部重新赋值
+
+        Records records = new Records(2);
+        records.Id = 1;
+        Console.WriteLine(records.Id.ToString() + " --- " + records.Name);
+
+        public class Records
+        {
+            public Records(int Id)
+            {
+                this.Id = Id;
+            }
+
+            public int Id { get; private set; }
+            public string Name { get; set; } = "";
+
+            // private set 可以通过构造函数赋值、也可以通过类内部赋值
+            void SetId()
+            {
+                this.Id = 3;
+            }
+        }
+      ```
+
+      ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220811095709.png)
+
+    - #### 关于属性赋值一些扩展说明
