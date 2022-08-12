@@ -49,6 +49,7 @@
       var context = File.ReadAllText(@"E:\practice\C#\ConsoleApp2\测试.txt");
       Console.WriteLine(context);
       ```
+
       ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220810215926.png)
 
 - ### 文件范围的命名空间声明（c# 10.0）
@@ -124,7 +125,7 @@
       ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220811095054.png)
 
       ``` private set 属性赋值一些扩展说明
-      2. private set; 可以在构造函数赋值，也可以在类内部重新赋值
+      1. private set; 可以在构造函数赋值，也可以在类内部重新赋值
 
         Records records = new Records(2);
         records.Id = 1;
@@ -150,4 +151,45 @@
 
       ![Image text](http://rgdm6sj3v.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220811095709.png)
 
-    - #### 关于属性赋值一些扩展说明
+    - #### Record [ˈrekɔːd] 的使用
+
+      - #### 1. record 可以实现部分属性是只读，而部分属性是可以读写的。 record 重写了ToString()和 Equals 方法
+
+        ```record 使用
+          /* recored 也是一种的类,和类的用法差不多 */
+
+          //第一种定义 实现属性只读
+          public record Records(int Id, string Name);
+
+
+
+          //第二种定义 实现部分属性只读，而部分属性可写
+          public record Records2(int Id, string Name)
+          {
+              public int Age { get; set; }
+              public string Address { get; set; }
+          }
+
+
+          /* record 练习 */
+
+          //属性只读
+          Records records = new Records(2, "小傻瓜");
+          Console.WriteLine(records.ToString());
+
+          Records2 records2 = new Records2(3, "小呆瓜");
+          //部分属性可以读写
+          records2.Address = "中国";
+          records2.Age = 100;
+
+          //重写了ToString 方法
+          Console.WriteLine(records2.ToString());
+
+          //重写了Equals 方法
+          Console.WriteLine(Object.Equals(records, records2));
+
+          //对比俩个对象引用地址是否相同
+          Console.WriteLine(Object.ReferenceEquals(records, records2));
+        ```
+
+      - #### 2. 默认生成的构造方法的行为不能修改，我们

@@ -10,25 +10,23 @@
 //Console.WriteLine(context);
 
 
-//record 练习
+/* record 练习 */
 
-Records records = new Records(2);
-records.Id = 1;
-Console.WriteLine(records.Id.ToString() + " --- " + records.Name);
+//属性只读
+Records records = new Records(2, "小傻瓜");
+Console.WriteLine(records.ToString());
 
-public class Records
-{
-    public Records(int Id)
-    {
-        this.Id = Id;
-    }
+Records2 records2 = new Records2(3, "小呆瓜", "中国");
+//部分属性可以读写
+records2.Address = "北京";
+records2.Age = 100;
 
-    public int Id { get; private set; }
-    public string Name { get; set; } = "";
+//重写了ToString 方法
+Console.WriteLine(records2.ToString());
 
-    // private set 可以通过构造函数赋值、也可以通过类内部赋值
-    void SetId()
-    {
-        this.Id = 3;
-    }
-}
+//重写了Equals 方法
+Console.WriteLine(Object.Equals(records, records2));
+
+//对比俩个对象引用地址是否相同
+Console.WriteLine(Object.ReferenceEquals(records, records2));
+
