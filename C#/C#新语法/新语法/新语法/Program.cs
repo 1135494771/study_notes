@@ -12,21 +12,16 @@
 
 /* record 练习 */
 
-//属性只读
-Records records = new Records(2, "小傻瓜");
-Console.WriteLine(records.ToString());
+//创建一个record对象，并通过原始构造函数初始化值
+Records2 records = new Records2(2, "小傻瓜");
 
-Records2 records2 = new Records2(3, "小呆瓜", "中国");
-//部分属性可以读写
-records2.Address = "北京";
-records2.Age = 100;
+//用法一：通过拷贝的方式创建新的对象
+Records2 records2 = records with { };
 
-//重写了ToString 方法
-Console.WriteLine(records2.ToString());
-
-//重写了Equals 方法
-Console.WriteLine(Object.Equals(records, records2));
+//用法二：通过拷贝的方式创建新的对象，并重新修改某些字段的值
+Records2 records3 = records with { Age=30 };
 
 //对比俩个对象引用地址是否相同
-Console.WriteLine(Object.ReferenceEquals(records, records2));
+Console.WriteLine(Object.ReferenceEquals(records, records3));
+
 

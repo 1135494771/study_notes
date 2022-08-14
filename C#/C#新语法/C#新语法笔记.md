@@ -192,4 +192,38 @@
           Console.WriteLine(Object.ReferenceEquals(records, records2));
         ```
 
-      - #### 2. 默认生成的构造方法的行为不能修改，我们
+      - #### 2. 默认生成的构造方法的行为不能修改，我们可以为类型提供多个构造方法，然后其他构造方法通过this调用默认的构造方法
+
+        ```record 构造方法
+        public record Records2(int Id, string Name)
+        {
+            public int Age { get; set; }
+            public string? Address { get; set; }
+
+            //使用this 给默认构造方法赋值
+            public Records2(int Id, string Name, string Address)
+                : this(Id, Name)
+            {
+                this.Address = Address;
+            }
+
+        }
+        ```
+
+      - #### 3. record也是普通的类，变量的赋值是引用传递
+
+      - #### 4. record创建对象副本，也叫做拷贝。赋值：引用类型而言地址值一样，如果修改了原来引用地址值，那新的对象值也会相应的发生改变；拷贝：快速的重新创建一个新的对象，地址值不相同，修改了原来引用地址值，新的修值不会发生改变。使用方法：Record cord=Recode2 with { }；
+
+        ```record 拷贝用法
+        //创建一个record对象，并通过原始构造函数初始化值
+        Records2 records = new Records2(2, "小傻瓜");
+
+        //用法一：通过拷贝的方式创建新的对象
+        Records2 records2 = records with { };
+
+        //用法二：通过拷贝的方式创建新的对象，并重新修改某些字段的值
+        Records2 records3 = records with { Age=30 };
+
+        //对比俩个对象引用地址是否相同
+        Console.WriteLine(Object.ReferenceEquals(records, records3));
+        ```

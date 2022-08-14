@@ -19,6 +19,7 @@ namespace 新语法
         public int Age { get; set; }
         public string? Address { get; set; }
 
+        //使用this 给默认构造方法赋值
         public Records2(int Id, string Name, string Address)
             : this(Id, Name)
         {
