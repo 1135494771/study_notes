@@ -20,5 +20,19 @@ namespace NetCoreWebApplication.Controllers
         {
             return $"id={id}";
         }
+
+        [HttpGet("{id:int}")]
+        [ActionName("GetAll")]
+        public IActionResult GetAllTest(int id)
+        {
+            if (id == 1)
+            {
+                return Ok($"id={id}");
+            }
+            else
+            {
+                return NotFound($"id={id},id输入错误");
+            }
+        }
     }
 }
