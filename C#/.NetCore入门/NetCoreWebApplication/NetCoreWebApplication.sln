@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApplication", "NetCoreWebApplication\NetCoreWebApplication.csproj", "{FB7F728B-1D42-4965-9106-8DB8AF879C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWebApplication", "NetCoreWebApplication\NetCoreWebApplication.csproj", "{FB7F728B-1D42-4965-9106-8DB8AF879C5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{6652C7F2-6E66-4F23-8D89-F3286F2BB65B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FB7F728B-1D42-4965-9106-8DB8AF879C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB7F728B-1D42-4965-9106-8DB8AF879C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB7F728B-1D42-4965-9106-8DB8AF879C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6652C7F2-6E66-4F23-8D89-F3286F2BB65B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6652C7F2-6E66-4F23-8D89-F3286F2BB65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6652C7F2-6E66-4F23-8D89-F3286F2BB65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6652C7F2-6E66-4F23-8D89-F3286F2BB65B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

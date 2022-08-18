@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NetCoreWebApplication.Services;
 
 namespace NetCoreWebApplication.Controllers
 {
@@ -7,6 +8,28 @@ namespace NetCoreWebApplication.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        //private readonly UserService userService;
+
+        //public UsersController(UserService _userService)
+        //{
+        //    this.userService = _userService;
+        //}
+
+        //[HttpGet("{i}/{j}")]
+        //[ActionName("Add")]
+        //public ActionResult<int> Add(int i, int j)
+        //{
+        //    return userService.Add(i, j);
+        //}
+
+        //把 [FromServices] 服务当成参数注入
+        [HttpGet("{i}/{j}")]
+        [ActionName("Add")]
+        public ActionResult<int> Add([FromServices] UserService userService, int i, int j)
+        {
+            return userService.Add(i, j);
+        }
+
         [HttpGet(Name = "aaa")]
         [ActionName("aaa")]
         public string Get()
@@ -34,5 +57,7 @@ namespace NetCoreWebApplication.Controllers
                 return NotFound($"id={id},id输入错误");
             }
         }
+
+        
     }
 }
